@@ -17,7 +17,7 @@ COPY . /app/
 RUN ls -al
 
 # Build the Angular app with the --prod flag
-RUN npm run build --prod
+RUN npm run build 
 
 # Stage 2: Serve the built Angular app with nginx
 FROM nginx:1.21.3
