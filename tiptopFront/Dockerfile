@@ -17,7 +17,7 @@ RUN npm run build --prod
 # Stage 2: Serve the built Angular app with nginx
 FROM nginx:1.21.3
 
-COPY --from=build /app/dist/tiptop /usr/share/nginx/html
+COPY --from=build /app2/dist/tiptop /usr/share/nginx/html
 
 EXPOSE 80
 
