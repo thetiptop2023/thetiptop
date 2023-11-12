@@ -1,24 +1,30 @@
 # Stage 1: Build the Angular app
 FROM node:14.20.0 AS build
 
-RUN mkdir -p /app2
+RUN mkdir -p /app
+WORKDIR /app
 
-WORKDIR /app2
+COPY package.json /app/
 
-COPY package.json /app2/
+# Debugging: Print the contents of the package.json file
+RUN cat package.json
 
 RUN npm install
 
-COPY . /app2/
+COPY . /app/
 
-RUN npm run build 
+# Debugging: Print the list of files in the /app directory
+RUN ls -al
 
+# Build the Angular app with the --prod flag
+RUN npm run build --prod
 
 # Stage 2: Serve the built Angular app with nginx
 FROM nginx:1.21.3
 
-COPY --from=build /app2/dist/tiptop /usr/share/nginx/html
+COPY --from=build /app/dist/tiptop /usr/share/nginx/html
 
 EXPOSE 80
 
+# Start Nginx with daemon off
 CMD ["nginx", "-g", "daemon off;"]
