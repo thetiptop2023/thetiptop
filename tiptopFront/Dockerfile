@@ -11,7 +11,7 @@ RUN npm install
 
 COPY . /app2/
 
-RUN npm run build --prod
+RUN npm run build 
 
 
 # Stage 2: Serve the built Angular app with nginx
