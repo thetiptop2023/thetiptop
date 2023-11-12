@@ -1,15 +1,15 @@
 # Stage 1: Build the Angular app
 FROM node:14.20.0 AS build
 
-RUN mkdir -p /app
+RUN mkdir -p /app2
 
-WORKDIR /app
+WORKDIR /app2
 
-COPY package.json /app/
+COPY package.json /app2/
 
 RUN npm install
 
-COPY . /app/
+COPY . /app2/
 
 RUN npm run build --prod
 
